@@ -8,7 +8,7 @@ type PaginationRangeProps = {
 
 export function PaginationRange({ currentPage, totalPages, totalDocs }: PaginationRangeProps) {
   return (
-    <div className="text-center font-medium">
+    <div className="">
       <p>
         {totalDocs} resultados, Página {currentPage} de {totalPages}
       </p>

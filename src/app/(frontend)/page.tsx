@@ -7,7 +7,6 @@ import { Countdown } from "@/components/Countdown";
 import { FeaturedPosts } from "@/components/FeaturedPosts";
 import { MostRead } from "@/components/MostRead";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { Category, Media } from "@/payload-types";
 import { getPostIds } from "@/utilities/get-post-ids";
 import { BookOpen, Calendar, MapPin } from "lucide-react";
 import Image from "next/image";
@@ -43,22 +42,14 @@ export default async function Page() {
         <div className="container grid gap-10 lg:grid-cols-12">
           <div className="space-y-10 lg:col-span-9">
             <div className="space-y-3">
-              <h2 className="subheading border-secondary text-brand-primary border-b pb-3">Destaques</h2>
+              {/* <h2 className="subheading border-secondary text-brand-primary border-b pb-3">Destaques</h2> */}
               <div className="mb-8 grid gap-3 lg:grid-cols-12">
                 <div className="min-w-0 lg:col-span-8">
                   <FeaturedPosts posts={featuredPosts} />
                 </div>
                 <div className="grid gap-3 max-lg:grid-cols-2 max-md:grid-cols-1 lg:col-span-4">
                   {secondaryFeaturedPosts.map((post) => (
-                    <Card
-                      key={post.id}
-                      url={post.relPermalink}
-                      categories={post.category as Category[]}
-                      title={post.title}
-                      description={post.excerpt}
-                      image={post.image as Media}
-                      size="sm"
-                    />
+                    <Card disable={{ excerpt: true }} {...post} key={post.id} size="sm" />
                   ))}
                 </div>
               </div>
@@ -68,29 +59,13 @@ export default async function Page() {
               <div className="space-y-3">
                 <h2 className="text-brand-primary border-secondary max-md:subheading border-b pb-3 text-xl font-medium">Technibus na história</h2>
                 {technibusHistoryPosts.map((post) => (
-                  <Card
-                    key={post.id}
-                    url={post.relPermalink}
-                    categories={post.category as Category[]}
-                    title={post.title}
-                    description={post.excerpt}
-                    image={post.image as Media}
-                    size="lg"
-                  />
+                  <Card {...post} key={post.id} size="lg" />
                 ))}
               </div>
               <div className="space-y-3">
                 <h2 className="text-brand-primary border-secondary max-md:subheading border-b pb-3 text-xl font-medium">Entrevista & Opinião</h2>
                 {interviewAndOpinionPosts.map((post) => (
-                  <Card
-                    key={post.id}
-                    url={post.relPermalink}
-                    categories={post.category as Category[]}
-                    title={post.title}
-                    description={post.excerpt}
-                    image={post.image as Media}
-                    size="lg"
-                  />
+                  <Card {...post} key={post.id} size="lg" />
                 ))}
               </div>
             </div>
@@ -99,7 +74,7 @@ export default async function Page() {
               <h2 className="text-brand-primary border-secondary subheading border-b pb-3">Últimas publicações</h2>
               <div className="grid auto-rows-min gap-3 sm:grid-cols-2 md:grid-cols-3">
                 {latestPosts.map((post) => (
-                  <Card key={post.id} url={post.relPermalink} categories={post.category as Category[]} title={post.title} description={post.excerpt} size="sm" />
+                  <Card {...post} key={post.id} size="sm" />
                 ))}
               </div>
             </div>

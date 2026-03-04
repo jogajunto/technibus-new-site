@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { Category, Media } from "@/payload-types";
+import { Category, Media, Post } from "@/payload-types";
 import { tv, type VariantProps } from "tailwind-variants";
 
 import { PayloadImage } from "@/components/Payload/Image";
@@ -18,40 +18,34 @@ const card = tv({
       sm: { title: "text-base" },
       lg: { title: "text-2xl" },
     },
-    withImage: {
-      true: {},
-      false: {},
-    },
   },
   defaultVariants: {
     size: "sm",
-    withImage: true,
   },
 });
 
 type CardVariants = VariantProps<typeof card>;
 
 type CardProps = {
-  categories: Category[];
-  title: string;
-  description?: string;
-  image?: Media;
-  url: string;
-} & CardVariants;
+  disable?: {
+    image?: boolean;
+    excerpt?: boolean;
+  };
+} & Post &
+  CardVariants;
 
-export function Card({ categories, title, description, image, url, size }: CardProps) {
-  const withImage = Boolean(image);
-  const slot = card({ size, withImage });
+export function Card({ category, title, excerpt, image, relPermalink, size, disable = { image: false, excerpt: false } }: CardProps) {
+  const slot = card({ size });
 
   return (
-    <Link href={url} className={slot.root()}>
-      {image && <PayloadImage className={slot.image()} image={image} disableCaption />}
+    <Link href={relPermalink} className={slot.root()}>
+      {!disable?.image && <PayloadImage className={slot.image()} image={image as Media} disableCaption />}
       <div className="space-y-4">
         <div className="space-y-2">
-          <p className={slot.meta()}>{categories?.length ? categories.map((category) => category.title).join(", ") : null}</p>
+          <p className={slot.meta()}>{category?.length ? category.map((category) => (category as Category).title).join(", ") : null}</p>
           <h2 className={slot.title()}>{title}</h2>
         </div>
-        {description && size == "lg" && <p className={slot.description()}>{description}</p>}
+        {!disable?.excerpt && <p className={slot.description()}>{excerpt}</p>}
       </div>
     </Link>
   );

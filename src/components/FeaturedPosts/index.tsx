@@ -3,7 +3,7 @@
 import ReactDOMServer from "react-dom/server";
 import { Swiper, SwiperProps, SwiperSlide } from "swiper/react";
 
-import { Category, Media, Post } from "@/payload-types";
+import { Post } from "@/payload-types";
 
 import { A11y, EffectFade, Pagination } from "swiper/modules";
 
@@ -44,7 +44,7 @@ export function FeaturedPosts({ posts }: FeaturedPostsProps) {
         <Swiper {...swiperOptions}>
           {posts?.map((post) => (
             <SwiperSlide className="bg-secondary h-auto!" key={post.id}>
-              <Card url={post.relPermalink} categories={post.category as Category[]} title={post.title} description={post.excerpt} image={post.image as Media} size="lg" />
+              <Card {...post} size="lg" />
             </SwiperSlide>
           ))}
           <div className="swiper-pagination z-10 mx-auto mt-4 flex max-w-max justify-center gap-4 rounded-3xl bg-linear-to-t p-2.5"></div>

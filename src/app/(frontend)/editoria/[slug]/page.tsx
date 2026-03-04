@@ -5,9 +5,10 @@ import { createMetadata } from "@/utilities/create-metadata";
 import { fetchCategoryBySlug } from "@/collections/Categories/data";
 import { fetchPaginatedPostsByCategory } from "@/collections/Posts/data";
 
+import { Card } from "@/components/Card";
+import { MostRead } from "@/components/MostRead";
 import { Pagination } from "@/components/Pagination";
 import { PaginationRange } from "@/components/PostRange";
-import { PostArchive } from "@/components/PostsArchive";
 
 type PageArgs = {
   params: Promise<{
@@ -40,12 +41,23 @@ export default async function Page({ params }: PageArgs) {
       </Head>
 
       <main>
-        <section className="py-24">
-          <div className="container space-y-10">
-            <h1 className="text-center text-4xl font-bold">Posts</h1>
-            <PaginationRange currentPage={posts.page || 1} totalPages={posts.totalPages} totalDocs={posts.totalDocs} />
-            <PostArchive posts={posts.docs} />
-            <Pagination page={posts.page} totalPages={posts.totalPages} path={`/editoria/${slug}`} />
+        <section className="relative z-0 min-w-0 pt-10 pb-24">
+          <div className="container grid gap-10 lg:grid-cols-12">
+            <div className="space-y-10 lg:col-span-9">
+              <div className="space-y-3">
+                <h2 className="text-brand-primary border-secondary subheading border-b pb-3">{category.title}</h2>
+                <PaginationRange currentPage={posts.page || 1} totalPages={posts.totalPages} totalDocs={posts.totalDocs} />
+                <div className="grid auto-rows-min gap-3 sm:grid-cols-2 md:grid-cols-3">
+                  {posts.docs.map((post) => (
+                    <Card {...post} key={post.id} size="sm" />
+                  ))}
+                </div>
+              </div>
+              <Pagination page={posts.page} totalPages={posts.totalPages} path={`/editoria/${slug}`} />
+            </div>
+            <div className="lg:col-span-3">
+              <MostRead />
+            </div>
           </div>
         </section>
       </main>
