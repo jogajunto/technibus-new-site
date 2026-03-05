@@ -1,13 +1,15 @@
+import Head from "next/head";
 import { notFound } from "next/navigation";
-
-import { createMetadata } from "@/utilities/create-metadata";
 
 import { fetchCategoryBySlug } from "@/collections/Categories/data";
 import { fetchPaginatedPostsByCategory } from "@/collections/Posts/data";
+import { createMetadata } from "@/utilities/create-metadata";
+
+import { Card } from "@/components/Card";
 import { Pagination } from "@/components/Pagination";
 import { PaginationRange } from "@/components/PostRange";
 import { PostArchive } from "@/components/PostsArchive";
-import Head from "next/head";
+import { Sidebar } from "@/components/Sidebar";
 
 type PageArgs = {
   params: Promise<{
@@ -17,12 +19,13 @@ type PageArgs = {
 };
 
 export async function generateMetadata({ params }: PageArgs) {
-  const { pageNumber } = await params;
+  const { slug, pageNumber } = await params;
+  const category = await fetchCategoryBySlug(slug);
 
   return createMetadata({
-    path: `/blog/pagina/${pageNumber}`,
-    title: `Blog (Página ${pageNumber})`,
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    path: `${category.relPermalink}/pagina/${pageNumber}`,
+    title: `Editoria (Página ${pageNumber})`,
+    description: category.description || "",
   });
 }
 
@@ -41,17 +44,26 @@ export default async function Page({ params: paramsPromise }: PageArgs) {
   return (
     <>
       <Head>
-        {posts.page && posts.page > 1 && <link rel="prev" href={`${process.env.SITE_URL}/editoria/${slug}/pagina/${posts.page - 1}`} />}
-        {posts.page && posts.totalPages > 1 && <link rel="next" href={`${process.env.SITE_URL}/editoria/${slug}/pagina/${posts.page + 1}`} />}
+        {posts.page && posts.page > 1 && <link rel="prev" href={`${process.env.SITE_URL}${category.relPermalink}/pagina/${posts.page - 1}`} />}
+        {posts.page && posts.totalPages > 1 && <link rel="next" href={`${process.env.SITE_URL}${category.relPermalink}/pagina/${posts.page + 1}`} />}
       </Head>
 
       <main>
-        <section className="py-24">
-          <div className="container space-y-10">
-            <h1 className="text-center text-4xl font-bold">Posts</h1>
-            <PaginationRange currentPage={posts.page || 1} totalPages={posts.totalPages} totalDocs={posts.totalDocs} />
-            <PostArchive posts={posts.docs} />
-            <Pagination page={posts.page} totalPages={posts.totalPages} path={`/editoria/${slug}`} />
+        <section className="relative z-0 pt-4 pb-24">
+          <div className="container grid gap-10 lg:grid-cols-[1fr_300px]">
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <h2 className="text-brand-primary border-secondary subheading border-b pb-3 max-sm:text-center">{category.title}</h2>
+                <PaginationRange currentPage={posts.page || 1} totalPages={posts.totalPages} totalDocs={posts.totalDocs} />
+              </div>
+              <PostArchive>
+                {posts.docs.map((post) => (
+                  <Card {...post} disable={{ excerpt: true }} key={post.id} size="sm" />
+                ))}
+              </PostArchive>
+              <Pagination page={posts.page} totalPages={posts.totalPages} path={`/editoria/${slug}`} />
+            </div>
+            <Sidebar />
           </div>
         </section>
       </main>

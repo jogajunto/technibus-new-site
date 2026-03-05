@@ -6,7 +6,9 @@ import { Inter } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 
+import { Ads } from "@/components/Ads";
 import { NewsletterDialogProvider } from "@/providers/newsletter-dialog";
+
 import "./globals.css";
 
 const inter = Inter({
@@ -32,6 +34,9 @@ export default function RootLayout({
       <body className={`${inter.variable} antialiased`}>
         <NewsletterDialogProvider>
           <Header />
+          <div className="container mb-6">
+            <Ads className="mx-auto max-w-5xl" position="main" />
+          </div>
           {children}
           {process.env.NEXT_PUBLIC_ENV === "production" && <GoogleTagManager gtmId="GTM-" />}
           <Footer />

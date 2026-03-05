@@ -25,7 +25,7 @@ export function Pagination({ className, page, path, totalPages }: PaginationProp
   };
 
   return (
-    <div className={cn("my-12", className)}>
+    <div className={cn("mt-12", className)}>
       <nav aria-label="pagination" className="mx-auto flex w-full justify-center" role="navigation">
         <ul className="flex flex-row items-center gap-1">
           <li className="-mr-1">

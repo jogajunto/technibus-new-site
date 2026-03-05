@@ -42,7 +42,7 @@ type AdsProps = {
   className?: string;
 };
 
-export default function Ads({ position, className }: AdsProps) {
+export function Ads({ position, className }: AdsProps) {
   const config = AD_SIZES[position];
 
   return (

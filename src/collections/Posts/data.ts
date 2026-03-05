@@ -59,7 +59,7 @@ export const fetchPaginatedPostsByCategory = async (categoryId: number, page: nu
     collection: "posts",
     depth: 2,
     draft,
-    limit: 9,
+    limit: 12,
     page: page,
     where: {
       and: [{ category: { equals: categoryId } }, ...(draft ? [] : [{ _status: { equals: "published" } }])],
