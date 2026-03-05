@@ -80,6 +80,9 @@ export interface Config {
     'payload-migrations': PayloadMigration;
   };
   collectionsJoins: {
+    users: {
+      posts: 'posts';
+    };
     categories: {
       posts: 'posts';
     };
@@ -144,8 +147,15 @@ export interface UserAuthOperations {
  */
 export interface User {
   id: number;
+  slug?: string | null;
+  relPermalink: string;
   name?: string | null;
   bio?: string | null;
+  posts?: {
+    docs?: (number | Post)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -383,8 +393,11 @@ export interface PayloadMigration {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
+  slug?: T;
+  relPermalink?: T;
   name?: T;
   bio?: T;
+  posts?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;

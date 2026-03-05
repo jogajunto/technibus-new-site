@@ -69,6 +69,22 @@ export const fetchPaginatedPostsByCategory = async (categoryId: number, page: nu
   return data;
 };
 
+export const fetchPaginatedPostsByAuthor = async (userId: number, page: number = 1): Promise<PaginatedDocs<Post>> => {
+  const { isEnabled: draft } = await draftMode();
+  const data = await payload.find({
+    collection: "posts",
+    depth: 2,
+    draft,
+    limit: 12,
+    page: page,
+    where: {
+      and: [{ author: { equals: userId } }, ...(draft ? [] : [{ _status: { equals: "published" } }])],
+    },
+  });
+
+  return data;
+};
+
 export async function fetchPostsByTagSlug(slug: string, limit: number, excludeIds: (string | number)[] = []): Promise<Post[]> {
   const { isEnabled: draft } = await draftMode();
 

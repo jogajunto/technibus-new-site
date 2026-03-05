@@ -1,9 +1,8 @@
 import Head from "next/head";
 
-import { createMetadata } from "@/utilities/create-metadata";
-
 import { fetchCategoryBySlug } from "@/collections/Categories/data";
 import { fetchPaginatedPostsByCategory } from "@/collections/Posts/data";
+import { createMetadata } from "@/utilities/create-metadata";
 
 import { Card } from "@/components/Card";
 import { Pagination } from "@/components/Pagination";

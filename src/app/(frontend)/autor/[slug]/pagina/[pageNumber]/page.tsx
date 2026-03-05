@@ -1,10 +1,10 @@
 import Head from "next/head";
 import { notFound } from "next/navigation";
 
-import { fetchCategoryBySlug } from "@/collections/Categories/data";
-import { fetchPaginatedPostsByCategory } from "@/collections/Posts/data";
+import { fetchPaginatedPostsByAuthor } from "@/collections/Posts/data";
 import { createMetadata } from "@/utilities/create-metadata";
 
+import { fetchUserBySlug } from "@/collections/Users/data";
 import { Card } from "@/components/Card";
 import { Pagination } from "@/components/Pagination";
 import { PaginationRange } from "@/components/PostRange";
@@ -20,12 +20,12 @@ type PageArgs = {
 
 export async function generateMetadata({ params }: PageArgs) {
   const { slug, pageNumber } = await params;
-  const category = await fetchCategoryBySlug(slug);
+  const author = await fetchUserBySlug(slug);
 
   return createMetadata({
-    path: `${category.relPermalink}/pagina/${pageNumber}`,
-    title: `Editoria: ${category.title} (Página ${pageNumber})`,
-    description: category.description || "",
+    path: `${author.relPermalink}/pagina/${pageNumber}`,
+    title: `Autor: ${author.name} (Página ${pageNumber})`,
+    description: author.bio || "",
   });
 }
 
@@ -34,8 +34,8 @@ export default async function Page({ params: paramsPromise }: PageArgs) {
 
   const sanitizedPageNumber = Number(pageNumber);
 
-  const category = await fetchCategoryBySlug(slug);
-  const posts = await fetchPaginatedPostsByCategory(category.id, sanitizedPageNumber);
+  const author = await fetchUserBySlug(slug);
+  const posts = await fetchPaginatedPostsByAuthor(author.id, sanitizedPageNumber);
 
   if (!Number.isInteger(sanitizedPageNumber) || !posts) {
     notFound();
@@ -44,8 +44,8 @@ export default async function Page({ params: paramsPromise }: PageArgs) {
   return (
     <>
       <Head>
-        {posts.page && posts.page > 1 && <link rel="prev" href={`${process.env.SITE_URL}${category.relPermalink}/pagina/${posts.page - 1}`} />}
-        {posts.page && posts.totalPages > 1 && <link rel="next" href={`${process.env.SITE_URL}${category.relPermalink}/pagina/${posts.page + 1}`} />}
+        {posts.page && posts.page > 1 && <link rel="prev" href={`${process.env.SITE_URL}${author.relPermalink}/pagina/${posts.page - 1}`} />}
+        {posts.page && posts.totalPages > 1 && <link rel="next" href={`${process.env.SITE_URL}${author.relPermalink}/pagina/${posts.page + 1}`} />}
       </Head>
 
       <main>
@@ -53,7 +53,7 @@ export default async function Page({ params: paramsPromise }: PageArgs) {
           <div className="container grid gap-10 lg:grid-cols-[1fr_300px]">
             <div className="space-y-8">
               <div className="space-y-4">
-                <h2 className="text-brand-primary border-secondary subheading border-b pb-3 max-sm:text-center">{category.title}</h2>
+                <h2 className="text-brand-primary border-secondary subheading border-b pb-3 max-sm:text-center">{author.name}</h2>
                 <PaginationRange currentPage={posts.page || 1} totalPages={posts.totalPages} totalDocs={posts.totalDocs} />
               </div>
               <PostArchive>
