@@ -5,12 +5,15 @@ import { getPostIds } from "@/utilities/get-post-ids";
 
 import { Card } from "@/components/Card";
 import { FeaturedPosts } from "@/components/FeaturedPosts";
-import { SectionHeading, SectionHeadingTitle } from "@/components/TitleWithDivider";
+import { SectionHeading, SectionHeadingActions, SectionHeadingTitle } from "@/components/TitleWithDivider";
 
+import { Ads } from "@/components/Ads";
+import { Button } from "@/components/Button";
 import { PostGrid } from "@/components/PostGrid";
 import { Sidebar } from "@/components/Sidebar";
-import { SectionLatbus } from "@/sections/Latbus";
 import { SectionLatestMagazines } from "@/sections/LatestMagazines";
+import Image from "next/image";
+import Link from "next/link";
 
 export function generateMetadata() {
   return createMetadata({
@@ -25,7 +28,7 @@ export default async function Page() {
   const secondaryFeaturedPosts = await fetchPostsByTagSlug("subdestaque", 2, getPostIds(featuredPosts));
   const technibusHistoryPosts = await fetchPostsByCategorySlug("technibus-na-historia", 1);
   const interviewAndOpinionPosts = await fetchPostsByCategorySlug("entrevista-e-opiniao", 1);
-  const latbusPosts = await fetchPostsByCategorySlug("latbus", 3);
+  const latbusPosts = await fetchPostsByCategorySlug("latbus", 2);
 
   const latestPosts = await fetchLatestPosts({
     excludeIds: [
@@ -56,10 +59,34 @@ export default async function Page() {
                   </div>
                 </PostGrid>
               </div>
+              <div className="space-y-6">
+                <SectionHeading>
+                  <SectionHeadingTitle size="lg">Lat.bus</SectionHeadingTitle>
+                  <SectionHeadingActions>
+                    <Button size="sm" asChild>
+                      <Link href="https://acervodigitalotm.com.br/" target="_blank" rel="noopener">
+                        Ver todas publicações
+                      </Link>
+                    </Button>
+                  </SectionHeadingActions>
+                </SectionHeading>
+                <PostGrid variant="3-cols">
+                  <div className="flex">
+                    <Image className="h-auto w-full rounded" src="/latbus-banner.svg" alt="" width={236} height={351} />
+                  </div>
+                  {latbusPosts.map((post) => (
+                    <Card disable={{ excerpt: true }} {...post} key={post.id} size="sm" />
+                  ))}
+                </PostGrid>
+              </div>
+              <PostGrid className="lg:hidden" variant="2-cols">
+                <Ads className="lg:hidden" position="sidebar-top" />
+                <Ads className="max-md:hidden lg:hidden" position="sidebar-middle" />
+              </PostGrid>
               <PostGrid variant="2-cols">
                 <div className="space-y-6">
                   <SectionHeading>
-                    <SectionHeadingTitle>Technibus na história</SectionHeadingTitle>
+                    <SectionHeadingTitle size="lg">Technibus na história</SectionHeadingTitle>
                   </SectionHeading>
                   {technibusHistoryPosts.map((post) => (
                     <Card {...post} key={post.id} size="lg" />
@@ -67,16 +94,17 @@ export default async function Page() {
                 </div>
                 <div className="space-y-6">
                   <SectionHeading>
-                    <SectionHeadingTitle>Entrevista & Opinião</SectionHeadingTitle>
+                    <SectionHeadingTitle size="lg">Entrevista & Opinião</SectionHeadingTitle>
                   </SectionHeading>
                   {interviewAndOpinionPosts.map((post) => (
                     <Card {...post} key={post.id} size="lg" />
                   ))}
                 </div>
               </PostGrid>
+              <Ads className="md:hidden" position="sidebar-middle" />
               <div className="space-y-6">
                 <SectionHeading>
-                  <SectionHeadingTitle>Últimas publicações</SectionHeadingTitle>
+                  <SectionHeadingTitle size="lg">Últimas publicações</SectionHeadingTitle>
                 </SectionHeading>
                 <PostGrid>
                   {latestPosts.map((post) => (
@@ -84,13 +112,13 @@ export default async function Page() {
                   ))}
                 </PostGrid>
               </div>
+              <Ads className="lg:hidden" position="sidebar-bottom-premium" />
             </div>
             <Sidebar />
           </div>
         </div>
       </section>
 
-      <SectionLatbus />
       <SectionLatestMagazines />
     </main>
   );

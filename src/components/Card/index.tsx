@@ -7,7 +7,7 @@ import Link from "next/link";
 const card = tv({
   slots: {
     root: "group block h-full space-y-6 rounded-lg relative transition-all duration-300",
-    image: "rounded aspect-[16/9] object-cover",
+    image: "rounded aspect-[16/10] object-cover",
     meta: "text-brand-primary relative text-xs z-10 tracking-wider uppercase",
     title: "text-primary group-hover:text-brand-primary text-balance",
     description: "text-secondary line-clamp-3 text-sm",
@@ -39,7 +39,7 @@ export function Card({ category, title, excerpt, image, relPermalink, size, disa
   return (
     <article className={slot.root()}>
       {!disable?.image && (
-        <div className="border-secondary bg-secondary relative aspect-[16/9] overflow-hidden rounded border">
+        <div className="border-secondary bg-secondary relative aspect-[16/10] overflow-hidden rounded border">
           <PayloadImage className="absolute size-full object-cover transition-transform duration-300 group-hover:scale-105" image={image as Media} disableCaption />
         </div>
       )}

@@ -11,7 +11,7 @@ import { getLastMagazines, getShortMonthName } from "@/utilities/get-last-magazi
 export async function SectionLatestMagazines() {
   const revistas = await getLastMagazines();
   return (
-    <section className="bg-primary relative py-24 max-md:pb-16">
+    <section className="bg-primary relative pb-24 max-md:pb-16">
       <div className="container flex flex-col gap-8 px-0">
         <SectionHeading className="mx-6">
           <SectionHeadingTitle size="lg">Revistas mais recentes</SectionHeadingTitle>

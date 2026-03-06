@@ -91,6 +91,11 @@ export function Menu({ categories }: MenuProps) {
               </li>
               <li>
                 <Button variant="ghost" onClick={closeMenu} asChild>
+                  <Link href="/editoria/latbus">Lat.bus</Link>
+                </Button>
+              </li>
+              <li>
+                <Button variant="ghost" onClick={closeMenu} asChild>
                   <Link href="https://acervodigitalotm.com.br/" target="_blank" rel="noopener">
                     Revistas
                   </Link>
@@ -138,6 +143,11 @@ export function Menu({ categories }: MenuProps) {
                     </li>
                   ))}
                 </ul>
+              </li>
+              <li>
+                <Button variant="ghost" onClick={closeMenu} asChild>
+                  <Link href="/editoria/latbus">Lat.bus</Link>
+                </Button>
               </li>
               <li>
                 <Button variant="ghost" onClick={closeMenu} asChild>

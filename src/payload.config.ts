@@ -128,7 +128,7 @@ export default buildConfig({
       collections: ["posts"],
       searchOverrides: {
         admin: {
-          //   hidden: true,
+          hidden: true,
         },
         fields: ({ defaultFields }) => [
           ...defaultFields,
