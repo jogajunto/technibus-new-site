@@ -15,9 +15,6 @@ export const fetchAllUsers = async (): Promise<User[]> => {
     depth: 2,
     draft,
     limit: 0,
-    where: {
-      and: [...(draft ? [] : [{ _status: { equals: "published" } }])],
-    },
   });
 
   const filtered = categories.filter((user: User) => {
