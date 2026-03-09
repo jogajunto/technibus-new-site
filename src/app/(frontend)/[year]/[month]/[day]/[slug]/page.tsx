@@ -5,12 +5,15 @@ import { Category, Media, User } from "@/payload-types";
 import { createMetadata } from "@/utilities/create-metadata";
 import { generateMetaDescription } from "@/utilities/generate-meta-description";
 
-import { fetchPostBySlug } from "@/collections/Posts/data";
+import { fetchPostBySlug, fetchPostsByCategorySlug } from "@/collections/Posts/data";
 import { Ads } from "@/components/Ads";
+import { Card } from "@/components/Card";
 import { PayloadImage } from "@/components/Payload/Image";
+import { PostGrid } from "@/components/PostGrid";
 import { RichText } from "@/components/RichText";
 import { Sidebar } from "@/components/Sidebar";
 import { Facebook, LinkedIn, Threads, WhatsApp, X } from "@/components/SocialIcon";
+import { SectionHeading, SectionHeadingTitle } from "@/components/TitleWithDivider";
 
 type PageArgs = {
   params: Promise<{
@@ -37,6 +40,9 @@ export default async function Page({ params }: PageArgs) {
   if (!post) {
     notFound();
   }
+
+  const firstCategory = (post.category as Category[])[0];
+  const relatedPosts = firstCategory ? await fetchPostsByCategorySlug(firstCategory.slug, 3, [post.id]) : [];
 
   return (
     <main>
@@ -124,6 +130,16 @@ export default async function Page({ params }: PageArgs) {
               </div>
               {post.content && <RichText data={post.content} />}
               <Ads className="lg:hidden" position="sidebar-bottom-premium" />
+              <div className="space-y-6">
+                <SectionHeading>
+                  <SectionHeadingTitle>Publicações relacionadas</SectionHeadingTitle>
+                </SectionHeading>
+                <PostGrid>
+                  {relatedPosts.map((post) => (
+                    <Card disable={{ excerpt: true }} {...post} key={post.id} size="sm" />
+                  ))}
+                </PostGrid>
+              </div>
             </div>
             <Sidebar />
           </div>

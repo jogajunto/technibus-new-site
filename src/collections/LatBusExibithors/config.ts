@@ -42,7 +42,6 @@ export const LatBusExibithors: CollectionConfig = {
       label: "Categoria",
       type: "relationship",
       relationTo: "latBusCategories",
-      required: true,
       hasMany: true,
     },
     {

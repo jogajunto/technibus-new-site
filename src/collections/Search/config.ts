@@ -3,8 +3,10 @@ import { searchPlugin as payloadSearchPlugin } from "@payloadcms/plugin-search";
 
 export const searchPlugin = payloadSearchPlugin({
   collections: ["posts"],
+
   searchOverrides: {
     admin: {},
+
     fields: ({ defaultFields }) => [
       ...defaultFields,
       {
@@ -82,7 +84,12 @@ export const searchPlugin = payloadSearchPlugin({
       },
     ],
   },
+
   beforeSync: ({ originalDoc, searchDoc }) => {
+    const publishDate = originalDoc?.publishedDate ? new Date(originalDoc.publishedDate) : null;
+
+    const now = new Date();
+
     return {
       ...searchDoc,
       relPermalink: originalDoc?.relPermalink,
@@ -90,9 +97,10 @@ export const searchPlugin = payloadSearchPlugin({
       image: originalDoc?.image,
       author: originalDoc?.author,
       hat: originalDoc?.hat,
-      content: richTextToPlainText(originalDoc?.content) || "This is a fallback excerpt",
+      content: richTextToPlainText(originalDoc?.content) || "",
       excerpt: originalDoc?.excerpt || "...",
       publishedDate: originalDoc?.publishedDate,
+      isScheduled: publishDate && publishDate > now,
     };
   },
 });

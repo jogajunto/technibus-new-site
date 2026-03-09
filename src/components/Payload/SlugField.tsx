@@ -1,5 +1,6 @@
 "use client";
 
+import { slugify } from "@/utilities/slugify";
 import { FieldLabel, TextInput, useField, useFormFields } from "@payloadcms/ui";
 import React, { useEffect, useRef } from "react";
 
@@ -14,15 +15,6 @@ type Props = {
   };
 };
 
-function formatSlug(value: string) {
-  return value
-    ?.toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)+/g, "");
-}
-
 export default function SlugField(props: Props) {
   const { path, field } = props;
 
@@ -36,17 +28,10 @@ export default function SlugField(props: Props) {
 
   const lastGenerated = useRef("");
 
-  const generateSlug = () => {
-    if (!title) return;
-    const slug = formatSlug(title);
-    lastGenerated.current = slug;
-    setValue(slug);
-  };
-
   useEffect(() => {
     if (!title) return;
 
-    const slug = formatSlug(title);
+    const slug = slugify(title);
 
     if (!value || value === lastGenerated.current) {
       lastGenerated.current = slug;

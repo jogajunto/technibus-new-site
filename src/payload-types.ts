@@ -272,7 +272,7 @@ export interface LatBusExibithor {
   logo?: (number | null) | Media;
   title: string;
   description: string;
-  category: (number | LatBusCategory)[];
+  category?: (number | LatBusCategory)[] | null;
   website: string;
   contact: {
     name: string;
