@@ -49,6 +49,9 @@ export const LatBusExibithors: CollectionConfig = {
       type: "text",
       label: "Site",
       required: true,
+      admin: {
+        placeholder: "https://www.exemplo.com",
+      },
       validate: (value: string | undefined | null) => {
         if (value && !isValidUrl(value)) {
           return "O link informado não é um URL válido. Verifique e tente novamente.";
@@ -66,12 +69,18 @@ export const LatBusExibithors: CollectionConfig = {
           label: "Nome do representante",
           type: "text",
           required: true,
+          admin: {
+            placeholder: "Nome e sobrenome",
+          },
         },
         {
           name: "email",
           label: "E-mail",
-          type: "text",
+          type: "email",
           required: true,
+          admin: {
+            placeholder: "nome@empresa.com.br",
+          },
         },
         phoneNumberField("whatsapp", "WhatsApp"),
       ],

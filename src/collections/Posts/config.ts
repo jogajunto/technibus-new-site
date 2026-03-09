@@ -36,17 +36,28 @@ export const Posts: CollectionConfig = {
       label: "Título",
       type: "text",
       required: true,
+      admin: {
+        placeholder: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      },
     },
     {
       name: "excerpt",
       label: "Resumo",
       type: "text",
       required: true,
+      admin: {
+        placeholder: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis.",
+        description: "Breve descrição da publicação, usada para SEO e pré-visualizações. Recomenda-se entre 120-160 caracteres.",
+      },
     },
     {
       name: "hat",
       label: "Chapéu",
       type: "text",
+      admin: {
+        placeholder: "Transporte público",
+        description: "Texto curto que aparece junto ao título, indicando o tema da publicação.",
+      },
     },
     {
       name: "tag",
@@ -82,6 +93,7 @@ export const Posts: CollectionConfig = {
       required: true,
       defaultValue: () => new Date().toISOString(),
       admin: {
+        description: "Para agendar uma publicação, escolha uma data posterior à atual.",
         date: {
           pickerAppearance: "dayOnly",
           displayFormat: "dd/MM/yyyy",

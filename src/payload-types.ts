@@ -206,11 +206,20 @@ export interface Post {
   slug: string;
   author?: (number | null) | User;
   title: string;
+  /**
+   * Breve descrição da publicação, usada para SEO e pré-visualizações. Recomenda-se entre 120-160 caracteres.
+   */
   excerpt: string;
+  /**
+   * Texto curto que aparece junto ao título, indicando o tema da publicação.
+   */
   hat?: string | null;
   tag?: (number | Tag)[] | null;
   category: (number | Category)[];
   image?: (number | null) | Media;
+  /**
+   * Para agendar uma publicação, escolha uma data posterior à atual.
+   */
   publishedDate: string;
   content: {
     root: {
