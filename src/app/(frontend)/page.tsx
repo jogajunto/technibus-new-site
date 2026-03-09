@@ -67,9 +67,7 @@ export default async function Page() {
                   <SectionHeadingTitle size="lg">Lat.Bus</SectionHeadingTitle>
                   <SectionHeadingActions>
                     <Button size="sm" asChild>
-                      <Link href="https://acervodigitalotm.com.br/" target="_blank" rel="noopener">
-                        Ver todas publicações
-                      </Link>
+                      <Link href="/editoria/latbus">Ver todas publicações</Link>
                     </Button>
                   </SectionHeadingActions>
                 </SectionHeading>
