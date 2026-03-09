@@ -82,7 +82,7 @@ export default async function Exibithors({ searchParams }: PageArgs) {
                     {exibithor.logo ? (
                       <PayloadImage image={exibithor.logo as Media} alt={exibithor.title} width={180} height={80} className="max-h-full w-full object-contain" />
                     ) : (
-                      <span className="text-xl font-bold text-[#0a1e3f]">{exibithor.title}</span>
+                      <span className="text-center text-lg font-semibold text-balance text-[#0a1e3f]">{exibithor.title}</span>
                     )}
                   </div>
 
