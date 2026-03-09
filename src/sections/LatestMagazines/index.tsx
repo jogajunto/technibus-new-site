@@ -37,7 +37,13 @@ export async function SectionLatestMagazines() {
                   className="group hover:bg-primary max-sm:bg-primary relative flex w-[80vw] min-w-0 flex-col gap-2 rounded-lg p-2 transition-all duration-300 hover:shadow-lg max-sm:shadow-lg sm:w-[226px]"
                 >
                   <div className="relative">
-                    <Image className="bg-tertiary-hover aspect-3/4 w-full rounded-sm object-cover" src={imageUrl} alt={magazine.name} width={858} height={977} />
+                    <Image
+                      className="bg-tertiary-hover aspect-3/4 w-full rounded-sm object-cover"
+                      src={imageUrl}
+                      alt={`${magazine.name} - ${magazine.edition}º Edição`}
+                      width={858}
+                      height={977}
+                    />
                   </div>
                   <div className="flex flex-1 flex-col gap-6">
                     <div className="text-secondary flex justify-between text-xs">
