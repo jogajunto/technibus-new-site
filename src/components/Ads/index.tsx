@@ -1,5 +1,4 @@
 import { cn } from "@/utilities/cn";
-import { Skeleton } from "../ui/skeleton";
 
 type AdPosition = "main" | "main-premium" | "sidebar-top" | "sidebar-top-premium" | "sidebar-middle" | "sidebar-middle-premium" | "sidebar-bottom" | "sidebar-bottom-premium";
 
@@ -47,8 +46,8 @@ export function Ads({ position, className }: AdsProps) {
 
   return (
     <div className={cn("w-full", className)}>
-      <Skeleton className="block w-full md:hidden" style={{ aspectRatio: `${config.mobile?.width ?? config.desktop.width} / ${config.mobile?.height ?? config.desktop.height}` }} />
-      <Skeleton className="hidden w-full md:block" style={{ aspectRatio: `${config.desktop.width} / ${config.desktop.height}` }} />
+      {/* <Skeleton className="block w-full md:hidden" style={{ aspectRatio: `${config.mobile?.width ?? config.desktop.width} / ${config.mobile?.height ?? config.desktop.height}` }} /> */}
+      {/* <Skeleton className="hidden w-full md:block" style={{ aspectRatio: `${config.desktop.width} / ${config.desktop.height}` }} /> */}
     </div>
   );
 }
