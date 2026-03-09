@@ -50,7 +50,7 @@ export function Card({ category, title, excerpt, image, relPermalink, size, hat,
       )}
       <div className="space-y-4">
         <div className="space-y-2">
-          <p className={slot.meta()}>{hat ? hat : (category[0] as Category).title}</p>
+          {hat && <p className={slot.meta()}>{hat}</p>}
           <h2 className={slot.title()}>{title}</h2>
           {!disable?.category && (
             <ul className="relative z-10 flex flex-wrap gap-2">
