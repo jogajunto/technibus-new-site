@@ -18,10 +18,10 @@ export async function MostRead() {
       </SectionHeading>
       <ol className="space-y-2">
         {posts.map((post, index) => (
-          <div className="flex gap-2" key={index}>
+          <li className="flex gap-2" key={index}>
             <span className="font-semibold">{index + 1}.</span>
             <Card {...post} disable={{ image: true, excerpt: true }} key={post.id} size="sm" />
-          </div>
+          </li>
         ))}
       </ol>
     </div>
