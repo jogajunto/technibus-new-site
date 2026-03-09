@@ -4,6 +4,7 @@ import Link from "next/link";
 import { fetchAllCategories } from "@/collections/Categories/data";
 import { Button } from "@/components/Button";
 import { NewsletterDialogButton } from "@/providers/newsletter-dialog";
+import { getCurrentYear } from "@/utilities/get-current-year";
 import { ArrowUp } from "lucide-react";
 
 const MENU_TECHNIBUS = [
@@ -16,7 +17,7 @@ const MENU_TECHNIBUS = [
 const MENU_SOCIAL = [
   { label: "Facebook", url: "https://www.facebook.com/otmeditora" },
   { label: "Instagram (OTM Editora)", url: "https://www.instagram.com/otmeditora/" },
-  { label: "Instagram (Transporte Moderno)", url: "https://www.instagram.com/transportemodernooficial/" },
+  { label: "Instagram (Technibus)", url: "https://www.instagram.com/otmeditora/" },
   { label: "Linkedin", url: "https://www.linkedin.com/in/otm-editora-a23367a5/" },
   { label: "Spotify", url: "https://open.spotify.com/show/7301YGnaZ08ViGvWoc8RBd" },
   { label: "Canal no WhatsApp", url: "https://whatsapp.com/channel/0029VatKJymGufIo6ZNsYt2H" },
@@ -39,27 +40,11 @@ export async function Footer() {
     <footer>
       <div className="bg-secondary border-secondary border-y py-24">
         <div className="container grid gap-8 lg:grid-cols-3">
-          <div className="space-y-8">
-            <Image src="/logo-otm-editora-positive.svg" alt="OTM Editora" width={113} height={68} />
-            <div className="space-y-3">
-              <h2 className="font-semibold">Redação, Administração, Publicidade e Correspondência:</h2>
-              <p>Av. Vereador José Diniz, 3300, 7° andar, cj. 707, Campo Belo. CEP 04604-006 – São Paulo / SP</p>
-              <p>
-                <a className="link" href="tel:+551150968104">
-                  Tel. (11) 5096-8104 (sequencial)
-                </a>
-                <br />
-                <a className="link" href="mailto:otmeditora@otmeditora.com">
-                  otmeditora@otmeditora.com
-                </a>
-              </p>
-            </div>
-          </div>
           <div className="space-y-6">
             <div className="space-y-2">
               <h2 className="border-secondary border-b pb-2 font-semibold">CEO</h2>
               <p>
-                Marcelo Ricardo Fontana <br />
+                Marcelo Fontana <br />
                 <a className="link" href="mailto:marcelofontana@otmeditora.com">
                   marcelofontana@otmeditora.com
                 </a>
@@ -150,6 +135,22 @@ export async function Footer() {
               </p>
             </div>
           </div>
+          <div className="space-y-8">
+            <Image src="/logo-otm-editora-positive.svg" alt="OTM Editora" width={113} height={68} />
+            <div className="space-y-3">
+              <h2 className="font-semibold">Redação, Administração, Publicidade e Correspondência:</h2>
+              <p>Av. Vereador José Diniz, 3300, 7° andar, cj. 707, Campo Belo. CEP 04604-006 – São Paulo / SP</p>
+              <p>
+                <a className="link" href="tel:+551150968104">
+                  Tel. (11) 5096-8104 (sequencial)
+                </a>
+                <br />
+                <a className="link" href="mailto:otmeditora@otmeditora.com">
+                  otmeditora@otmeditora.com
+                </a>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -217,14 +218,11 @@ export async function Footer() {
             </div>
           </div>
 
-          <div className="grid items-center gap-y-6 md:grid-cols-2">
-            <Image src="/logo-otm-editora-negative.svg" alt="OTM Editora" width={114} height={64} />
-            <div>
-              <p className="text-secondary max-w-[70ch] text-sm text-balance">
-                @2026 OTM Editora. Todos os direitos reservados. <br />É proibida a reprodução do conteúdo desta página em qualquer meio de comunicação, eletrônico ou impresso, sem
-                autorização escrita da OTM Editora.
-              </p>
-            </div>
+          <div>
+            <p className="text-secondary text-sm text-balance">
+              @{getCurrentYear()} OTM Editora. Todos os direitos reservados. <br />É proibida a reprodução do conteúdo desta página em qualquer meio de comunicação, eletrônico ou
+              impresso, sem autorização escrita da OTM Editora.
+            </p>
           </div>
         </div>
       </div>

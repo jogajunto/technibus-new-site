@@ -81,6 +81,14 @@ export default async function Page() {
                     <Card disable={{ excerpt: true }} {...post} key={post.id} size="sm" />
                   ))}
                 </PostGrid>
+                <div className="bg-primary flex flex-col items-center gap-4 rounded-lg p-6 text-center">
+                  <h3 className="text-xl font-semibold">Guia dos expositores Lat.Bus 2026</h3>
+                  <Button size="sm" variant="secondary" asChild>
+                    <Link href="/guia-dos-expositores-lat-bus-2026" target="_blank" rel="noopener">
+                      Ver todas publicações
+                    </Link>
+                  </Button>
+                </div>
               </div>
 
               {/* Ads */}
