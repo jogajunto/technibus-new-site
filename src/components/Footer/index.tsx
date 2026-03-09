@@ -125,7 +125,7 @@ export async function Footer() {
               <p>
                 Gilberto A. Paulin <br />
                 <a className="link" href="tel:+554130290563">
-                  Tel.: (41) 3029-0563
+                  +55 (41) 3029-0563
                 </a>
               </p>
               <p>
@@ -143,7 +143,7 @@ export async function Footer() {
               <p>Av. Vereador José Diniz, 3300, 7° andar, cj. 707, Campo Belo. CEP 04604-006 – São Paulo / SP</p>
               <p>
                 <a className="link" href="tel:+551150968104">
-                  Tel.: +55 (11) 5096-8104
+                  +55 (11) 5096-8104
                 </a>
                 <br />
                 <a className="link" href="mailto:redacao@otmeditora.com">
