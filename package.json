@@ -12,6 +12,9 @@
     "payload:generate-importmap": "payload generate:importmap",
     "import:wp": "tsx scripts/import-post-from-wordpress-to-payload-cms.ts"
   },
+  "cacheDirectories": [
+    ".next/cache"
+  ],
   "type": "module",
   "dependencies": {
     "@next/third-parties": "^16.1.6",
