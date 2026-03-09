@@ -64,11 +64,11 @@ export default async function Exibithors({ searchParams }: PageArgs) {
         </div>
 
         {exibithors.length === 0 ? (
-          <div className="rounded-xl border border-gray-100 bg-white p-12 text-center shadow-sm">
-            <p className="text-lg text-gray-500">Nenhum expositor encontrado com os filtros atuais.</p>
-            <a href="/expositores" className="mt-4 inline-block text-blue-600 hover:underline">
-              Limpar filtros
-            </a>
+          <div className="mx-auto max-w-2xl space-y-3 p-12 text-center">
+            <p className="subheading text-brand-primary text-2xl">Nenhum expositor encontrado</p>
+            <p className="text-secondary">
+              Não encontramos algo que corresponda aos seus critérios de busca. <br /> Tente ajustar os filtros ou a palavra-chave para encontrar o que procura.
+            </p>
           </div>
         ) : (
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">

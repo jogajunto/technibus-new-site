@@ -70,7 +70,7 @@ export function FilterExibithors({ categories, initialCategory, initialSearch }:
   }
 
   return (
-    <div className="mb-12 flex flex-col justify-between gap-4 md:flex-row">
+    <div className="relative mb-12 flex flex-col items-center justify-between gap-4 md:flex-row">
       <div className="w-full">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -103,12 +103,6 @@ export function FilterExibithors({ categories, initialCategory, initialSearch }:
         <Button type="button" variant="ghost" onClick={handleClearFilters}>
           Limpar
         </Button>
-      )}
-
-      {isPending && (
-        <div className="flex w-full gap-4 md:hidden">
-          <div className="h-10 flex-1 animate-pulse rounded-full bg-gray-100" />
-        </div>
       )}
     </div>
   );
