@@ -10,8 +10,8 @@ type CreateMetadataProps = {
 };
 
 export function createMetadata({ path, title, description, prev, next, noIndex = false }: CreateMetadataProps): Metadata {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL!;
-  const siteTitle = process.env.NEXT_PUBLIC_SITE_TITLE!;
+  const baseUrl = process.env.SITE_URL!;
+  const siteTitle = process.env.SITE_TITLE!;
   const url = `${baseUrl}${path}`;
 
   return {
