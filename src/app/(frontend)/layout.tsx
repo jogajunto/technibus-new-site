@@ -38,7 +38,7 @@ export default function RootLayout({
             <Ads className="mx-auto max-w-5xl" position="main" />
           </div>
           {children}
-          {process.env.NEXT_PUBLIC_ENV === "production" && <GoogleTagManager gtmId="GTM-" />}
+          {process.env.NEXT_PUBLIC_ENV === "production" && <GoogleTagManager gtmId="GTM-58L35CT" />}
           <Footer />
         </NewsletterDialogProvider>
       </body>
