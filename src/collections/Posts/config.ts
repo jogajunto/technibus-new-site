@@ -2,7 +2,6 @@ import type { CollectionConfig } from "payload";
 
 import { relPermalinkField } from "@/fields/relpermalink";
 import { slugField } from "@/fields/slug";
-import { revalidatePath } from "next/cache";
 
 export const Posts: CollectionConfig = {
   slug: "posts",
@@ -20,15 +19,15 @@ export const Posts: CollectionConfig = {
       autosave: true,
     },
   },
-  hooks: {
-    afterChange: [
-      ({ operation }) => {
-        if (operation === "update") {
-          revalidatePath("/", "layout");
-        }
-      },
-    ],
-  },
+  //   hooks: {
+  //     afterChange: [
+  //       ({ operation }) => {
+  //         if (operation === "update") {
+  //           revalidatePath("/", "layout");
+  //         }
+  //       },
+  //     ],
+  //   },
   fields: [
     relPermalinkField(),
     slugField(),
@@ -88,6 +87,26 @@ export const Posts: CollectionConfig = {
       hasMany: true,
       admin: {
         position: "sidebar",
+      },
+    },
+    {
+      name: "socialPublished",
+      label: "Publicado nas redes sociais",
+      type: "checkbox",
+      admin: {
+        position: "sidebar",
+        description: "Marque esta opção se a publicação já tiver sido compartilhada nas redes sociais. Isso ajuda a evitar compartilhamentos duplicados.",
+        readOnly: true,
+      },
+    },
+    {
+      name: "viewCount",
+      label: "Contagem de visualizações",
+      type: "number",
+      admin: {
+        position: "sidebar",
+        description: "Número de vezes que a publicação foi visualizada.",
+        readOnly: true,
       },
     },
     {
