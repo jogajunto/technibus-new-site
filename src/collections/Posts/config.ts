@@ -3,6 +3,8 @@ import type { CollectionConfig } from "payload";
 import { relPermalinkField } from "@/fields/relpermalink";
 import { slugField } from "@/fields/slug";
 import { revalidatePath } from "next/cache";
+import { convertImage } from "./endpoints/convert-image";
+import { sendToSocial } from "./endpoints/send-to-social";
 
 export const Posts: CollectionConfig = {
   slug: "posts",
@@ -44,6 +46,18 @@ export const Posts: CollectionConfig = {
       },
     ],
   },
+  endpoints: [
+    {
+      path: "/:id/send-to-social",
+      method: "post",
+      handler: sendToSocial,
+    },
+    {
+      path: "/convert-image",
+      method: "get",
+      handler: convertImage,
+    },
+  ],
   fields: [
     relPermalinkField(),
     slugField(),
@@ -109,10 +123,22 @@ export const Posts: CollectionConfig = {
       name: "socialPublished",
       label: "Publicado nas redes sociais",
       type: "checkbox",
+      defaultValue: false,
       admin: {
         position: "sidebar",
         description: "Marque esta opção se a publicação já tiver sido compartilhada nas redes sociais. Isso ajuda a evitar compartilhamentos duplicados.",
         readOnly: true,
+        hidden: true,
+      },
+    },
+    {
+      name: "sendToSocialAction",
+      type: "ui",
+      admin: {
+        position: "sidebar",
+        components: {
+          Field: "@/components/SendToSocialButton",
+        },
       },
     },
     {
