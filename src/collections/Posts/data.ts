@@ -30,7 +30,7 @@ export const fetchPostBySlug = async (slug: string, overrideAccess?: boolean): P
     depth: 1,
     draft: true,
     limit: 1,
-    overrideAccess: overrideAccess,
+    // overrideAccess: overrideAccess,
     where: {
       and: [{ slug: { equals: slug } }],
     },
