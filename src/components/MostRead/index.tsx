@@ -11,12 +11,10 @@ export async function MostRead() {
         <SectionHeadingTitle>Mais lidos</SectionHeadingTitle>
       </SectionHeading>
       <ol className="space-y-2">
-        {posts.map(({ post, totalViews }, index) => {
+        {posts.map(({ post }, index) => {
           return (
             <li className="flex gap-2" key={index}>
-              <span className="font-semibold">
-                {index + 1}. {totalViews}
-              </span>
+              <span className="font-semibold">{index + 1}.</span>
               <Card {...post} disable={{ image: true, excerpt: true }} key={post.id} size="sm" />
             </li>
           );
