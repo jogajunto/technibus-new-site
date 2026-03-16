@@ -2,6 +2,7 @@
 
 import { useDocumentInfo, useFormFields } from "@payloadcms/ui";
 import { useState } from "react";
+import "./styles.scss";
 
 export default function SendToSocialButton() {
   const [loading, setLoading] = useState(false);
@@ -44,7 +45,7 @@ export default function SendToSocialButton() {
 
   return (
     <div style={{ padding: "10px 0", borderTop: "1px solid var(--theme-elevation-100)" }}>
-      <h4 style={{ marginBottom: "10px", fontSize: "14px" }}>Integração Social</h4>
+      <h4 style={{ marginBottom: "10px", fontSize: "14px" }}>Integração Social - Facebook</h4>
 
       {socialPublished ? (
         <div style={{ color: "var(--theme-success-400)", fontWeight: "bold" }}>✓ Já enviado para redes sociais</div>
@@ -53,17 +54,13 @@ export default function SendToSocialButton() {
           type="button"
           onClick={handleSend}
           disabled={loading}
+          className="send-to-social-button"
           style={{
-            padding: "8px 16px",
-            backgroundColor: "var(--theme-elevation-800)",
-            color: "black",
-            border: "none",
-            borderRadius: "4px",
             cursor: loading ? "not-allowed" : "pointer",
             opacity: loading ? 0.7 : 1,
           }}
         >
-          {loading ? "Enviando..." : "Enviar para Zapier"}
+          {loading ? "Enviando..." : "Enviar para Facebook"}
         </button>
       )}
 

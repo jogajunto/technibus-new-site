@@ -38,7 +38,7 @@ export const Posts: CollectionConfig = {
   versions: {
     drafts: {
       autosave: {
-        interval: 100,
+        interval: 2000,
       },
     },
   },
@@ -145,16 +145,6 @@ export const Posts: CollectionConfig = {
         components: {
           Field: "@/components/SendToSocialButton",
         },
-      },
-    },
-    {
-      name: "viewCount",
-      label: "Contagem de visualizações",
-      type: "number",
-      admin: {
-        position: "sidebar",
-        description: "Número de vezes que a publicação foi visualizada.",
-        readOnly: true,
       },
     },
     {

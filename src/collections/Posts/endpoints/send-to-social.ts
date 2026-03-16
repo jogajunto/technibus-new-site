@@ -10,6 +10,7 @@ export const sendToSocial: PayloadHandler = async (req: PayloadRequest) => {
     // 1. Buscar a URL do Zapier no Global
     const settings = await req.payload.findGlobal({
       slug: "social-media-settings",
+      draft: false,
     });
 
     if (!settings.zapierEndpointUrl) {

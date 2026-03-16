@@ -68,6 +68,7 @@ export interface Config {
   blocks: {};
   collections: {
     users: User;
+    'daily-views': DailyView;
     posts: Post;
     media: Media;
     categories: Category;
@@ -96,6 +97,7 @@ export interface Config {
   };
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
+    'daily-views': DailyViewsSelect<false> | DailyViewsSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
@@ -225,10 +227,6 @@ export interface Post {
    * Marque esta opção se a publicação já tiver sido compartilhada nas redes sociais. Isso ajuda a evitar compartilhamentos duplicados.
    */
   socialPublished?: boolean | null;
-  /**
-   * Número de vezes que a publicação foi visualizada.
-   */
-  viewCount?: number | null;
   image?: (number | null) | Media;
   /**
    * Para agendar uma publicação, escolha uma data posterior à atual.
@@ -287,6 +285,18 @@ export interface Category {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "daily-views".
+ */
+export interface DailyView {
+  id: number;
+  post: number | Post;
+  date: string;
+  views: number;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -376,6 +386,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'users';
         value: number | User;
+      } | null)
+    | ({
+        relationTo: 'daily-views';
+        value: number | DailyView;
       } | null)
     | ({
         relationTo: 'posts';
@@ -471,6 +485,17 @@ export interface UsersSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "daily-views_select".
+ */
+export interface DailyViewsSelect<T extends boolean = true> {
+  post?: T;
+  date?: T;
+  views?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "posts_select".
  */
 export interface PostsSelect<T extends boolean = true> {
@@ -483,7 +508,6 @@ export interface PostsSelect<T extends boolean = true> {
   tag?: T;
   category?: T;
   socialPublished?: T;
-  viewCount?: T;
   image?: T;
   publishedDate?: T;
   content?: T;
@@ -665,6 +689,7 @@ export interface SocialMediaSetting {
    * Informe a URL do webhook do Zapier para envio de posts.
    */
   zapierEndpointUrl: string;
+  _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -688,6 +713,7 @@ export interface TopbarSelect<T extends boolean = true> {
  */
 export interface SocialMediaSettingsSelect<T extends boolean = true> {
   zapierEndpointUrl?: T;
+  _status?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
