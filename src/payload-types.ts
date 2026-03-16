@@ -665,6 +665,7 @@ export interface SocialMediaSetting {
    * Informe a URL do webhook do Zapier para envio de posts.
    */
   zapierEndpointUrl: string;
+  _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -688,6 +689,7 @@ export interface TopbarSelect<T extends boolean = true> {
  */
 export interface SocialMediaSettingsSelect<T extends boolean = true> {
   zapierEndpointUrl?: T;
+  _status?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
