@@ -27,20 +27,18 @@ import { pt } from "@payloadcms/translations/languages/pt";
 import { YouTubeEmbedBlock } from "@/blocks/YoutubeEmbed";
 
 import { nodemailerAdapter } from "@payloadcms/email-nodemailer";
-import { seoPlugin } from "@payloadcms/plugin-seo";
-import { s3Storage } from "@payloadcms/storage-s3";
 
 import { Categories } from "@/collections/Categories/config";
 import { LatBusCategories } from "@/collections/LatBusCategories/config";
 import { LatBusExibithors } from "@/collections/LatBusExibithors/config";
 import { Media } from "@/collections/Media/config";
 import { Posts } from "@/collections/Posts/config";
-import { searchPlugin } from "@/collections/Search/config";
 import { Tags } from "@/collections/Tags/config";
 import { Users } from "@/collections/Users/config";
 import { SpotifyEmbedBlock } from "./blocks/SpotifyEmbed";
 
 import { Topbar } from "@/globals/Topbar/config";
+import plugins from "@/plugins";
 import { SocialMediaSettings } from "./globals/SocialMediaSettings/config";
 
 const filename = fileURLToPath(import.meta.url);
@@ -150,22 +148,5 @@ export default buildConfig({
     },
   }),
   sharp,
-  plugins: [
-    seoPlugin({}),
-    s3Storage({
-      collections: {
-        media: true,
-      },
-      bucket: process.env.CLOUDFLARE_R2_BUCKET!,
-      config: {
-        endpoint: process.env.CLOUDFLARE_R2_ENDPOINT!,
-        credentials: {
-          accessKeyId: process.env.CLOUDFLARE_R2_ACCESS_KEY_ID!,
-          secretAccessKey: process.env.CLOUDFLARE_R2_SECRET_ACCESS_KEY!,
-        },
-        region: "auto",
-      },
-    }),
-    searchPlugin,
-  ],
+  plugins,
 });
