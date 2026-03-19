@@ -10,22 +10,11 @@ Ensure you have the following installed:
 
 ### Export current database from server
 
-1. SSH into the server:
-   ```sh
-   ssh -p 822 <server_username>@<server_address>
-   ```
-2. Dump the database:
-   ```sh
-   dokku postgres:export <dokku_app_name> > dump.sql
-   ```
-3. Copy the dump file to your local machine (run this command on your local machine):
-   ```sh
-   scp -P 822 <server_username>@<server_address>:/home/<server_username>/dump.sql ./
-   ```
-4. Delete the dump file from the server:
-   ```sh
-   rm dump.sql
-   ```
+Run the following command **on your local machine**:
+
+```sh
+ssh -p 822 <server_username>@<server_address> "dokku postgres:export <dokku_app_name>" > dump.sql
+```
 
 ### Starting the Development Environment
 

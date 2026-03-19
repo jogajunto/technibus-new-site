@@ -437,7 +437,7 @@
   }
 
   .payload-richtext a {
-    @apply underline;
+    @apply text-brand-primary underline;
   }
 
   .payload-richtext > * + * {
@@ -453,12 +453,20 @@
     @apply my-8 border-l-4 px-8 text-xl italic;
   }
 
-  .payload-richtext h4 {
-    @apply text-primary text-2xl font-bold;
+  .payload-richtext h2 {
+    @apply subheading;
   }
 
   .payload-richtext h3 {
+    @apply text-primary text-2xl font-bold;
+  }
+
+  .payload-richtext h4 {
     @apply text-primary text-xl font-bold;
+  }
+
+  .payload-richtext h5 {
+    @apply text-primary text-lg font-bold;
   }
 
   .payload-richtext ul {

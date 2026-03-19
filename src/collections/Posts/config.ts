@@ -37,9 +37,7 @@ export const Posts: CollectionConfig = {
   },
   versions: {
     drafts: {
-      autosave: {
-        interval: 1000,
-      },
+      autosave: true,
     },
   },
   hooks: {
