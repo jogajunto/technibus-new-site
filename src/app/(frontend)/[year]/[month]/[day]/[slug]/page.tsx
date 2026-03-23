@@ -114,47 +114,27 @@ export default async function Page({ params }: PageArgs) {
                   {post.relPermalink && (
                     <ul className="flex gap-4">
                       <li>
-                        <Link
-                          href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(process.env.SITE_URL! + post.relPermalink)}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
+                        <Link href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(process.env.SITE_URL! + post.relPermalink)}`} target="_blank" rel="noopener noreferrer">
                           <LinkedIn className="icon-brand-primary size-6" />
                         </Link>
                       </li>
                       <li>
-                        <Link
-                          href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(process.env.SITE_URL! + post.relPermalink)}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
+                        <Link href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(process.env.SITE_URL! + post.relPermalink)}`} target="_blank" rel="noopener noreferrer">
                           <Facebook className="icon-brand-primary size-6" />
                         </Link>
                       </li>
                       <li>
-                        <Link
-                          href={`https://x.com/intent/tweet?url=${encodeURIComponent(process.env.SITE_URL! + post.relPermalink)}&text=${encodeURIComponent(post.title)}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
+                        <Link href={`https://x.com/intent/tweet?url=${encodeURIComponent(process.env.SITE_URL! + post.relPermalink)}&text=${encodeURIComponent(post.title)}`} target="_blank" rel="noopener noreferrer">
                           <X className="icon-brand-primary size-6" />
                         </Link>
                       </li>
                       <li>
-                        <Link
-                          href={`https://www.threads.net/intent/post?text=${encodeURIComponent(post.title + " " + process.env.SITE_URL! + post.relPermalink)}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
+                        <Link href={`https://www.threads.net/intent/post?text=${encodeURIComponent(post.title + " " + process.env.SITE_URL! + post.relPermalink)}`} target="_blank" rel="noopener noreferrer">
                           <Threads className="icon-brand-primary size-6" />
                         </Link>
                       </li>
                       <li>
-                        <Link
-                          href={`https://api.whatsapp.com/send?text=${encodeURIComponent(post.title + " " + process.env.SITE_URL! + post.relPermalink)}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
+                        <Link href={`https://api.whatsapp.com/send?text=${encodeURIComponent(post.title + " " + process.env.SITE_URL! + post.relPermalink)}`} target="_blank" rel="noopener noreferrer">
                           <WhatsApp className="icon-brand-primary size-6" />
                         </Link>
                       </li>
@@ -167,7 +147,7 @@ export default async function Page({ params }: PageArgs) {
                   <Ads variant="sidebarMeio" />
                 </div>
                 {post.content && <RichText data={post.content} />}
-                <Ads className="lg:hidden" variant="sidebarMeio2" />
+                {/* <Ads className="lg:hidden" variant="sidebarMeio2" /> */}
                 <div className="space-y-6">
                   <SectionHeading>
                     <SectionHeadingTitle>Publicações relacionadas</SectionHeadingTitle>
@@ -178,7 +158,7 @@ export default async function Page({ params }: PageArgs) {
                     ))}
                   </PostGrid>
                 </div>
-                <Ads className="lg:hidden" variant="sidebarBase" />
+                {/* <Ads className="lg:hidden" variant="sidebarBase" /> */}
               </div>
               <Sidebar />
             </div>

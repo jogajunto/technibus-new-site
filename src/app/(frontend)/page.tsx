@@ -7,7 +7,6 @@ import { Card } from "@/components/Card";
 import { FeaturedPosts } from "@/components/FeaturedPosts";
 import { SectionHeading, SectionHeadingActions, SectionHeadingTitle } from "@/components/TitleWithDivider";
 
-import { Ads } from "@/components/Ads";
 import { Button } from "@/components/Button";
 import { LatbusMarquee } from "@/components/LatbusMarquee";
 import { PostGrid } from "@/components/PostGrid";
@@ -34,13 +33,7 @@ export default async function Page() {
   const latbusPosts = await fetchPostsByCategorySlug("latbus", 2);
 
   const latestPosts = await fetchLatestPosts({
-    excludeIds: [
-      ...getPostIds(featuredPosts),
-      ...getPostIds(secondaryFeaturedPosts),
-      ...getPostIds(technibusHistoryPosts),
-      ...getPostIds(interviewAndOpinionPosts),
-      ...getPostIds(latbusPosts),
-    ],
+    excludeIds: [...getPostIds(featuredPosts), ...getPostIds(secondaryFeaturedPosts), ...getPostIds(technibusHistoryPosts), ...getPostIds(interviewAndOpinionPosts), ...getPostIds(latbusPosts)],
   });
 
   return (
@@ -92,10 +85,10 @@ export default async function Page() {
               </div>
 
               {/* Ads */}
-              <PostGrid className="lg:hidden" variant="2-cols">
+              {/* <PostGrid className="lg:hidden" variant="2-cols">
                 <Ads className="lg:hidden" variant="sidebarTopo" />
                 <Ads className="max-md:hidden lg:hidden" variant="sidebarMeio" />
-              </PostGrid>
+              </PostGrid> */}
 
               {/* Latest */}
               <div className="space-y-6">
@@ -110,10 +103,10 @@ export default async function Page() {
               </div>
 
               {/* Ads */}
-              <PostGrid className="lg:hidden" variant="2-cols">
+              {/* <PostGrid className="lg:hidden" variant="2-cols">
                 <Ads className="lg:hidden" variant="sidebarMeio2" />
                 <Ads className="max-md:hidden lg:hidden" variant="sidebarBase" />
-              </PostGrid>
+              </PostGrid> */}
 
               {/* Specials */}
               <PostGrid variant="2-cols">

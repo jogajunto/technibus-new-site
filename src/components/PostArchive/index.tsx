@@ -7,7 +7,6 @@ import { PaginationRange } from "@/components/PostRange";
 import { Sidebar } from "@/components/Sidebar";
 
 import { Post, Search } from "@/payload-types";
-import { Ads } from "../Ads";
 
 type PostArchiveProps = {
   children: ReactNode;
@@ -58,13 +57,13 @@ export function PostArchiveFeed({ posts, page, totalPages, path, query, cardDisa
         {posts.map((post, index) => (
           <Fragment key={post.id}>
             <Card {...post} disable={cardDisable} size="sm" />
-            {index === 2 && <Ads className="lg:hidden" variant="sidebarTopo" />}
+            {/* {index === 2 && <Ads className="lg:hidden" variant="sidebarTopo" />}
             {index === 6 && <Ads className="lg:hidden" variant="sidebarMeio" />}
-            {index === 7 && <Ads className="lg:hidden" variant="sidebarMeio2" />}
+            {index === 7 && <Ads className="lg:hidden" variant="sidebarMeio2" />} */}
           </Fragment>
         ))}
       </PostGrid>
-      <Ads className="lg:hidden" variant="sidebarBase" />
+      {/* <Ads className="lg:hidden" variant="sidebarBase" /> */}
       <Pagination page={page} totalPages={totalPages} path={path} query={query} />
     </>
   );
