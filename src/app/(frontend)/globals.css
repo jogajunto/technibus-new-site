@@ -445,8 +445,8 @@
   }
 
   .payload-richtext iframe,
-  .payload-richtext img {
-    @apply my-10;
+  .payload-richtext figure {
+    @apply my-10 block;
   }
 
   .payload-richtext blockquote {
