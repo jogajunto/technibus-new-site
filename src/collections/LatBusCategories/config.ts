@@ -1,3 +1,4 @@
+import { revalidatePath } from "next/cache";
 import type { CollectionConfig } from "payload";
 
 export const LatBusCategories: CollectionConfig = {
@@ -14,6 +15,15 @@ export const LatBusCategories: CollectionConfig = {
     drafts: {
       autosave: true,
     },
+  },
+  hooks: {
+    afterChange: [
+      ({ operation }) => {
+        if (operation === "update" || operation === "create") {
+          revalidatePath("/", "layout");
+        }
+      },
+    ],
   },
   fields: [
     {
